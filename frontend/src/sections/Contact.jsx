@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { FaPaperPlane, FaCheck, FaTimes } from "react-icons/fa";
+import { API_BASE_URL } from "../config/api";
 
 const Contact = () => {
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { margin: "-15%" });
@@ -57,7 +57,7 @@ const Contact = () => {
     setStatus("sending");
 
     try {
-      const response = await fetch(`${API_BASE_URL}/contacts`, {
+      const response = await fetch(`${API_BASE_URL.replace("/api", "")}/api/contacts`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

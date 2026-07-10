@@ -10,6 +10,7 @@ import CustomCursor from "./components/CustomCursor";
 import IntroAnimation from "./components/IntroAnimation";
 import Education from "./sections/Education";
 import MusicPlayer from "./components/MusicPlayer";
+import { API_HEALTH_ENDPOINT } from "./config/api";
 
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -17,8 +18,7 @@ const App = () => {
   useEffect(() => {
     const wakeUpBackend = async () => {
       try {
-        const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
-        await fetch(`${apiBaseUrl.replace("/api", "")}/api/health`, {
+        await fetch(API_HEALTH_ENDPOINT, {
           method: "GET",
           signal: AbortSignal.timeout(5000),
         });

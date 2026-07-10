@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTrash, FaSearch, FaSync } from "react-icons/fa";
+import { API_BASE_URL } from "../config/api";
 
 const Admin = () => {
   const [messages, setMessages] = useState([]);
@@ -8,8 +9,6 @@ const Admin = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [error, setError] = useState("");
-
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
   useEffect(() => {
     fetchMessages();
