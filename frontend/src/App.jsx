@@ -17,6 +17,11 @@ const App = () => {
 
   useEffect(() => {
     const wakeUpBackend = async () => {
+      if (!API_HEALTH_ENDPOINT) {
+        console.warn("API_HEALTH_ENDPOINT not configured");
+        return;
+      }
+
       try {
         await fetch(API_HEALTH_ENDPOINT, {
           method: "GET",
